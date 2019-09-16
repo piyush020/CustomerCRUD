@@ -1,0 +1,32 @@
+<p>update works!</p>
+<div class="container">
+        <form #custForm=ngForm (ngSubmit)="update()" class="was-validated">
+            <div class="form-group">
+                Customer Id:<input type="text" name="id" id="id" [(ngModel)]="cust.id" #custid="ngModel"
+                    class="form-control" required pattern="[0-9]{3,}">
+                <span *ngIf="custid.touched&&custid.errors?.required" class="invalid-feedback">Customer Id is required</span>
+                <span *ngIf="custid.dirty&&custid.errors?.pattern" class="alert alert-danger">Id should be 3 digits</span>
+            </div>
+            <div class="form-group">
+                Name:<input type="text" name="name" id="name" [(ngModel)]="cust.name" #custname="ngModel"
+                    class="form-control" required pattern="[A-Z]{1}[a-z]+">
+                <span *ngIf="custname.touched&&custname.errors?.required" class="invalid-feedback">Customer Name is required</span>
+                <span *ngIf="custname.dirty&&custname.errors?.pattern" class="alert alert-danger">First Letter should be capital</span>
+            </div>
+            <div class="form-group">
+                Email:<input type="email" name="email" id="email" [(ngModel)]="cust.email" #custemail="ngModel"
+                    class="form-control" required email>
+                <span *ngIf="custemail.touched&&custemail.errors?.required" class="invalid-feedback">Email is required</span>
+                <span *ngIf="custemail.dirty&&custemail.errors?.email" class="alert alert-danger">Invalid email format</span>
+            </div>
+            <div class="form-group">
+                    Phone:<input type="text" name="phone" id="phone" [(ngModel)]="cust.phone" #custphone="ngModel"
+                        class="form-control" required pattern="[0-9]{10}">
+                    <span *ngIf="custphone.touched&&custphone.errors?.required" class="invalid-feedback">Customer Phone is required</span>
+                    <span *ngIf="custphone.dirty&&custphone.errors?.pattern" class="alert alert-danger">Invalid number</span>
+                </div>
+            <br>
+            <button class="btn btn-primary" type="submit" [disabled]="custForm.invalid">Update</button>
+        </form>
+    
+    </div>
